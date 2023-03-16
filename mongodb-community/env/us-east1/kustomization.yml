@@ -1,0 +1,15 @@
+resources:
+  - ../policies
+  - externaldns-devpr.yml
+  - externaldns-adevpr.yml
+ 
+  # namespaced resources
+  - devpr
+  - adevpr
+
+ #  mongodb cluster resources
+  - ../../components/mongodb/deploy
+  - ../../components/mongodb/config/rbac
+
+components:
+  - ../../components/cert-manager
