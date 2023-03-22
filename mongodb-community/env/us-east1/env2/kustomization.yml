@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../../components/mongodb/config/rbac
+  - ../../../components/mongodb/config/tls
+  - externalsecret.yml
+
+patches:
+  - target:
+      kind: Certificate
+      name: orbit-pr-mongodb-tls
+    patch: |-
+      - op: replace
+        path: /spec/dnsNames/0
+        value: mongodb-svc.dev-pr.svc.cluster.local
+
+namespace: dev-pr
